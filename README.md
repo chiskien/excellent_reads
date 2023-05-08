@@ -2,4 +2,4 @@
 
 ## Database Model
 
-<img src="src/main/resources/goodreads.png">
+<img src="src/main/resources/goodreads.svg">
