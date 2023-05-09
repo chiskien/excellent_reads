@@ -1,0 +1,1 @@
+alter table genre modify genre_name nvarchar(50) not null;
