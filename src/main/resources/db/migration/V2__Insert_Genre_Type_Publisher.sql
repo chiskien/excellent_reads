@@ -41,3 +41,8 @@ INSERT INTO status (status_name)
 VALUES ('Currently Reading');
 INSERT INTO status (status_name)
 VALUES ('Want to Read');
+
+INSERT INTO publisher (name, homepage, location)
+VALUES ('Penguin Publishing Group', 'https://www.penguin.com/', 'United States');
+INSERT INTO publisher (name, homepage, location)
+VALUES ('IT Revolution Press', 'https://itrevolution.com/', 'United States');
