@@ -11,7 +11,8 @@ import java.util.List;
 public class GenreRepository {
     private final JdbcTemplate jdbcTemplate;
     private final RowMapper<Genre> genreRowMapper = (rs, rowNum) ->
-            new Genre(rs.getInt("genre_id"), rs.getString("genre_name"));
+            new Genre(rs.getInt("genre_id"),
+                    rs.getString("genre_name"));
 
 
     public GenreRepository(JdbcTemplate jdbcTemplate) {
@@ -20,7 +21,6 @@ public class GenreRepository {
 
     public List<Genre> getAllGenres() {
         return jdbcTemplate.query("SELECT * from genre", genreRowMapper);
-
     }
 
 }

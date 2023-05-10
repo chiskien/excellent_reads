@@ -72,6 +72,7 @@
                         <schema>goodreads</schema>
                     </schemas>
                     <url>jdbc:mysql://localhost:3306/goodreads</url>
+                    <cleanDisabled>false</cleanDisabled>
                 </configuration>
             </plugin>
         </plugins>
