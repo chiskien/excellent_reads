@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class BookRepository {
@@ -27,5 +28,10 @@ public class BookRepository {
 
     public List<Book> getAllBooks() {
         return jdbcTemplate.query("SELECT * FROM book", bookRowMapper);
+    }
+
+    public Book getBookById(Long id) {
+        return jdbcTemplate.queryForObject("SELECT * FROM book WHERE id = ?",
+                bookRowMapper, id);
     }
 }

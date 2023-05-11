@@ -109,11 +109,11 @@ public class Book {
         this.pages = pages;
     }
 
-    public Long getTypeId() {
+    public Long getType_id() {
         return typeId;
     }
 
-    public void setTypeId(Long typeId) {
+    public void setType_id(Long typeId) {
         this.typeId = typeId;
     }
 
