@@ -1,23 +1,9 @@
 package com.excellent_reads.models;
 
 import java.math.BigDecimal;
-import java.util.Set;
 import java.util.Date;
-import java.util.HashSet;
 
 public class Book {
-
-    public Book(Long id, String title, String cover, String description, Date publishedDate, int pages) {
-        this.id = id;
-        this.title = title;
-        this.cover = cover;
-        this.description = description;
-        this.publishedDate = publishedDate;
-        this.pages = pages;
-        genres = new HashSet<>();
-    }
-
-    private Set<Genre> genres;
     private Long id;
     private String title;
     private String cover;
@@ -36,6 +22,16 @@ public class Book {
     private String language;
     private String originalTitle;
     private String country;
+
+    public Book(Long id, String title, String cover, String description, Date publishedDate, int pages) {
+        this.id = id;
+        this.title = title;
+        this.cover = cover;
+        this.description = description;
+        this.publishedDate = publishedDate;
+        this.pages = pages;
+    }
+
 
     public Long getId() {
         return id;
@@ -181,11 +177,4 @@ public class Book {
         this.country = country;
     }
 
-    public Set<Genre> getGenres() {
-        return genres;
-    }
-
-    public void setGenres(Set<Genre> genres) {
-        this.genres = genres;
-    }
 }
