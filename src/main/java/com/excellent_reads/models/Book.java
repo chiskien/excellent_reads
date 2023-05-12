@@ -1,7 +1,7 @@
 package com.excellent_reads.models;
 
 import java.math.BigDecimal;
-import java.util.Collection;
+import java.util.Set;
 import java.util.Date;
 import java.util.HashSet;
 
@@ -17,7 +17,7 @@ public class Book {
         genres = new HashSet<>();
     }
 
-    private Collection<Genre> genres;
+    private Set<Genre> genres;
     private Long id;
     private String title;
     private String cover;
@@ -181,11 +181,11 @@ public class Book {
         this.country = country;
     }
 
-    public Collection<Genre> getGenres() {
+    public Set<Genre> getGenres() {
         return genres;
     }
 
-    public void setGenres(Collection<Genre> genres) {
+    public void setGenres(Set<Genre> genres) {
         this.genres = genres;
     }
 }

@@ -3,16 +3,15 @@ package com.excellent_reads.repositories;
 import com.excellent_reads.models.Book;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public class BookRepository {
 
     private final JdbcTemplate jdbcTemplate;
-
     private final RowMapper<Book> bookRowMapper = (rs, rowNum) ->
             new Book(rs.getLong("id"),
                     rs.getString("title"),
