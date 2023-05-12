@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class BookRepository implements BaseRepository<Book> {
@@ -33,9 +34,11 @@ public class BookRepository implements BaseRepository<Book> {
     }
 
     @Override
-    public Book getById(Long id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM book WHERE id = ?",
+    public Optional<Book> getById(Long id) {
+
+        Book b = jdbcTemplate.queryForObject("SELECT * FROM book WHERE id = ?",
                 bookRowMapper, id);
+        return Optional.of(b);
     }
 
     @Override
@@ -47,4 +50,5 @@ public class BookRepository implements BaseRepository<Book> {
     public Book save(Book entity) {
         return null;
     }
+
 }

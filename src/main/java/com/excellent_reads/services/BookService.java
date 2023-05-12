@@ -20,6 +20,6 @@ public class BookService {
     }
 
     public Optional<Book> getById(Long id) {
-        return Optional.of(bookRepository.getById(id));
+        return bookRepository.getById(id);
     }
 }
