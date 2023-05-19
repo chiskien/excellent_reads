@@ -12,7 +12,6 @@
 - Spring Security (OAuth or SSO)
 - Logging
 - Database Schema Management (Flyway)
-- RabbitMQ or Spring for Kafka
 - Testings: 
 - Continuous Integration: Jenkins
 - Deploy: Docker, K8S, Linux
