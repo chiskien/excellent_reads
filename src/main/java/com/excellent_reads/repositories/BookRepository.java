@@ -1,7 +1,6 @@
 package com.excellent_reads.repositories;
 
 import com.excellent_reads.models.Book;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -22,7 +21,6 @@ public class BookRepository implements BaseRepository<Book> {
                     rs.getInt("pages")
             );
 
-    @Autowired
     public BookRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
@@ -38,7 +36,7 @@ public class BookRepository implements BaseRepository<Book> {
 
         Book b = jdbcTemplate.queryForObject("SELECT * FROM book WHERE id = ?",
                 bookRowMapper, id);
-        return Optional.of(b);
+        return (b == null) ? Optional.empty() : Optional.of(b);
     }
 
     @Override
