@@ -1,11 +1,10 @@
 package com.excellent_reads.repositories;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface BaseRepository<T> {
 
-    List<T> getAll();
+    Iterable<T> getAll();
 
     Optional<T> getById(Long id);
 

@@ -2,10 +2,12 @@ package com.excellent_reads.controllers;
 
 import com.excellent_reads.models.Book;
 import com.excellent_reads.services.BookService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/books")
@@ -13,6 +15,7 @@ import java.util.List;
 public class BookController {
 
     private final BookService bookService;
+    private final Logger logger = Logger.getLogger(BookController.class.getName());
 
     public BookController(BookService bookService) {
         this.bookService = bookService;
@@ -20,11 +23,19 @@ public class BookController {
 
     @GetMapping()
     public List<Book> getAllBooks() {
+        logger.info("Get All Books");
         return bookService.getALlBooks();
     }
 
     @GetMapping("{id}")
     public ResponseEntity<Book> getBookById(@PathVariable Long id) {
-        return ResponseEntity.of(bookService.getById(id));
+        logger.info("Get Books with id: " + id);
+        if (bookService.getById(id).isEmpty()) {
+            logger.info("Not found book with id: " + id);
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            logger.info("Book with id: " + id);
+            return ResponseEntity.of(bookService.getById(id));
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.excellent_reads.repositories;
 
 import com.excellent_reads.models.Book;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -33,10 +34,14 @@ public class BookRepository implements BaseRepository<Book> {
 
     @Override
     public Optional<Book> getById(Long id) {
-
-        Book b = jdbcTemplate.queryForObject("SELECT * FROM book WHERE id = ?",
-                bookRowMapper, id);
-        return (b == null) ? Optional.empty() : Optional.of(b);
+        Book b;
+        try {
+            b = jdbcTemplate.queryForObject("SELECT * FROM book WHERE id = ?",
+                    bookRowMapper, id);
+        } catch (DataAccessException dataAccessException) {
+            return Optional.empty();
+        }
+        return (b != null) ? Optional.of(b) : Optional.empty();
     }
 
     @Override
