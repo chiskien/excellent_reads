@@ -6,12 +6,14 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Repository
 public class BookRepository implements BaseRepository<Book> {
-
+    private final Logger logger = Logger.getLogger(BookRepository.class.getName());
     private final JdbcTemplate jdbcTemplate;
     private final RowMapper<Book> bookRowMapper = (rs, rowNum) ->
             new Book(rs.getLong("id"),
@@ -46,12 +48,29 @@ public class BookRepository implements BaseRepository<Book> {
 
     @Override
     public void delete(Long id) {
-        System.out.println();
+        try {
+            var optionalBook = getById(id);
+            if (optionalBook.isPresent()) {
+                Book b = optionalBook.get();
+                jdbcTemplate.update("delete from book where id = ?", b.getId());
+            }
+        } catch (DataAccessException dataAccessException) {
+            throw new RuntimeException(dataAccessException.getMessage());
+        }
     }
 
     @Override
-    public Book save(Book entity) {
-        return null;
+    public Book save(Book book) {
+        try {
+            jdbcTemplate.update("""
+                    insert into book (title, cover, description, isbn, published_date, publisher_id, pages, type_id, total_ratings, average_ratings, total_reviews, status, language, original_title, country)
+                    values (?, ?,?, ?,?, ?,?, ?,?, ?,?, ?,?, ?,?)
+                    """
+            );
+        } catch (DataAccessException dataAccessException) {
+            logger.info(dataAccessException.getMessage());
+        }
+        return book;
     }
 
 }

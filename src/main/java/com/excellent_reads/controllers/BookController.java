@@ -28,11 +28,12 @@ public class BookController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Book> getBookById(@PathVariable Long id) {
-        logger.info("Get Books with id: " + id);
+    public ResponseEntity<?> getBookById(@PathVariable Long id) {
         if (bookService.getById(id).isEmpty()) {
             logger.info("Not found book with id: " + id);
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body("Not found book with id: " + id);
         } else {
             logger.info("Book with id: " + id);
             return ResponseEntity.of(bookService.getById(id));
