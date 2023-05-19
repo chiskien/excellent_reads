@@ -1,4 +1,3 @@
-
 create table genre
 (
     genre_id   int unsigned auto_increment
@@ -83,8 +82,8 @@ create table user
     last_name     varchar(255) charset utf8mb3         not null,
     gender        tinyint(1) default 1                 not null,
     joined_date   datetime   default CURRENT_TIMESTAMP not null,
-    overview      varchar(255) charset utf8mb3         null,
-    country       int                                  null,
+    overview      varchar(1000) charset utf8mb3        null,
+    country       varchar(255)                         null,
     avatar        varchar(255)                         null,
     isAuthor      tinyint(1) default 0                 not null,
     hash          int                                  null invisible,
