@@ -25,10 +25,9 @@ public class Book {
     private String language;
     private String originalTitle;
     private String country;
-    public Collection<Genre> genres;
+    public Collection<Genre> genres = new HashSet<>();
 
     public Book(Long id, String title, String cover, String description, Date publishedDate, int pages) {
-        genres = new HashSet<>();
         this.id = id;
         this.title = title;
         this.cover = cover;
@@ -37,6 +36,24 @@ public class Book {
         this.pages = pages;
     }
 
+    public Book(Long id, String title, String cover, String description, String isbn, Date publishedDate, Long publisherId, int pages, Long typeId, Integer totalRatings, BigDecimal averageRatings, Integer totalReviews, boolean status, String language, String originalTitle, String country) {
+        this.id = id;
+        this.title = title;
+        this.cover = cover;
+        this.description = description;
+        this.isbn = isbn;
+        this.publishedDate = publishedDate;
+        this.publisherId = publisherId;
+        this.pages = pages;
+        this.typeId = typeId;
+        this.totalRatings = totalRatings;
+        this.averageRatings = averageRatings;
+        this.totalReviews = totalReviews;
+        this.status = status;
+        this.language = language;
+        this.originalTitle = originalTitle;
+        this.country = country;
+    }
 
     public Long getId() {
         return id;
